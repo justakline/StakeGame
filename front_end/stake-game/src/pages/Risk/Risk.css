@@ -1,0 +1,99 @@
+.RiskCardsWrapper {
+  width: 68%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin-top: 25px;
+}
+.RiskCard {
+  padding: 40px 40px;
+  border: 1px solid #dddddd1a;
+  border-radius: 16px;
+  border-image-slice: 1;
+  background: #ffffff14;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  max-width: 665px;
+  min-width: 200px;
+  transition: 0.3s;
+}
+
+
+
+.RiskCard:hover{
+  border-color: var(--primaryColor2);
+}
+
+
+
+.RiskCard > h2 {
+  color: var(--fontColor);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.RiskCard > ul {
+  /* text-align: left; */
+  text-align: inherit;
+  padding-left: 0px;
+  font-size: 1.1rem;
+}
+.RiskCard > ul > li {
+  list-style: none;
+  color: var(--fontColor2);
+  padding-top: 7px;
+}
+.lastRow{
+  display: contents;
+
+  justify-content: center;
+}
+
+
+
+@media only screen and (max-width: 995px) {
+  
+  .wrapper{
+    width:100%;
+  }
+  .RiskCardsWrapper {
+    width: 100%;
+    min-width:200px ;
+  }
+  .RiskCardsWrapper {
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+  .RiskCard {
+
+    width:100%;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+  }
+
+  .RiskCard > ul {
+    padding-left: 10px;
+    text-align: center;
+  }
+  .lastRow {
+    width: initial;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    
+  }
+  .cCard{
+    max-width: 665px;
+    min-width: 200px;
+    margin-bottom: 0px;
+    display: block;
+  }
+  .NextChange{
+    position :absolute;
+    margin-top: 10px;
+  }
+
+}
+@media only screen and (max-width: 767px) {
+  .RiskCard {
+    /* max-width: 485px; */
+  }
+}

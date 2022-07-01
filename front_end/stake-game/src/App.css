@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --primaryColor: #e10b4c;
+  --primaryColor2: #8ba1f8;
+  --primaryColor3: #d08bf8;
+  --secondaryColor: #041530;
+  --fontColor: rgb(255, 255, 255);
+  --fontColor2: rgb(179, 179, 179);
+  --headingSize: 3.2rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(black, var(--secondaryColor));
+  text-size-adjust: 60%;
+  overflow-x: hidden;
+
+
+}
+.active {
+  color: var(--primaryColor) !important;
+  font-weight: 600 !important;
+}
+.App {
+  width: 100%;
+  min-height: 100vh;
+  background: url("./assets/BG.png") center no-repeat fixed;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+}
+.gradientText {
+  width: fit-content;
+  background: linear-gradient(45deg, #7a93f4, #ff3868);
+  font-weight: 800;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.wrapper {
+  min-height: 100vh;
+  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cBtn {
+  min-width: 130px;
+  padding: 8px 20px;
+  border-radius: 7px;
+  color: var(--fontColor);
+  border: none;
+  background-color: var(--primaryColor);
+  transition: 0.3s;
+  font-weight: 500;
+}
+.cBtn:hover {
+  background-color: #c20b42;
+}
+.heading {
+  font-size: var(--headingSize);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

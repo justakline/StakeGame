@@ -1,0 +1,31 @@
+{
+  "4": {
+    "GurToken": [],
+    "StakeFarm": []
+  },
+  "42": {
+    "GurToken": [],
+    "StakeFarm": []
+  },
+  "43113": {
+    "GurToken": [],
+    "Presale": [
+      "0x5dbFa9cdc2bc6Ac2a175ADe4aA30e01fD3C520D9"
+    ],
+    "RiskFarm": [
+      "0xc036Ace874B1f9b47f10ac671E07e28F83F00d21"
+    ],
+    "SpeculateFarm": [
+      "0x135eaB6A199a580A378F2342Ab78BcAC65D1585D"
+    ],
+    "StakeFarm": [
+      "0x07bb4D3Db890Df30644844a4f39FF3ef58a121C1"
+    ],
+    "StakeToken": [
+      "0x9a9f8f13EcA5a570fd175CF5B1126e5F07B2fA60"
+    ],
+    "TestFarm": [
+      "0x6CdD6EF0B6b1E575aF81a449aE1b192deE5AaA06"
+    ]
+  }
+}

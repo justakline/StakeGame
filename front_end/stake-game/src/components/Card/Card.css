@@ -1,0 +1,52 @@
+.cCard {
+  padding: 40px 10px;
+  border: 1px solid #dddddd1a;
+
+  border-radius: 16px;
+  border-image-slice: 1;
+  background: #ffffff14;
+  text-align: center;
+  backdrop-filter: blur(15px);
+  min-width: 200px;
+  max-width: 70vw;
+  transition: 0.3s;
+
+
+
+}
+
+
+.cCard:hover {
+  
+
+  border-color: var(--primaryColor2);
+  /* border-color: linear-gradient(45deg, #7a93f4, #ff3868); */
+}
+
+
+
+
+
+.cHeading {
+  color: var(--fontColor);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+ margin-left: -10px;
+ margin-right: -10px;
+
+
+
+}
+.cText {
+  color: var(--fontColor2);
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 996px) {
+  .cCard {
+    /* margin-bottom: 5px; */
+
+  }
+}

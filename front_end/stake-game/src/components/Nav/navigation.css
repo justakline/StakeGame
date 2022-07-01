@@ -1,0 +1,162 @@
+
+.navWrapper {
+  width: 100%;
+  padding: 12px 0;
+  position: fixed;
+  background: none;
+  z-index: 100;
+}
+.hideMenu {
+  display: none;
+}
+.secondNav {
+  padding: 7px 0;
+  transition: 0.3s;
+  background: rgb(4 20 56);
+}
+.Logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+.Logo > img {
+  width: 180px;
+}
+
+.navigation {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navigation li {
+  list-style: none;
+}
+.navigation li a {
+  text-decoration: none;
+  color: var(--fontColor2);
+  font-weight: 500;
+  transition: 0.3s;
+  font-size: 14px;
+}
+.navigation li a:hover {
+  color: var(--primaryColor);
+}
+.navigation > button {
+  margin-left: 5rem;
+}
+.btn_Hide {
+  display: none;
+}
+.HambargarLogo {
+  display: none;
+}
+.crossButton {
+  
+  display: none;
+}
+@media only screen and (max-width: 992px) {
+  
+
+  .Logo {
+    display: none;
+  }
+  .helper{
+    width: 100%;
+  }
+  .menubar{
+    justify-content: space-between;
+    width:inherit;
+  }
+  .colm-md-2{
+    justify-content: space-around;
+    width:100% !important;
+      
+  }
+  .crossButton {
+    display: block;
+    font-size: 43px;
+    background: #2c2f3f00;
+    /* border-radius: 0 10px 10px 0px; */
+    border: none;
+    color: var(--fontColor);
+    /* margin-top: 30px; */
+  }
+  .HambargarLogo {
+    display: block;
+  }
+  .HambargarLogo > img {
+    width: 85%;
+    margin-bottom: 30px;
+  }
+  .btn_Hide {
+    display: block;
+  }
+  .navigation {
+    width: 40%;
+    max-width: 300px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: #2c2f3fa6;
+    height: 60vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-right: 1px solid #37373f66;
+    border-radius: 1rem;
+    padding-top: 10%;
+
+
+  }
+  .navigation li {
+    padding-bottom: 15px;
+    padding-left: 20%;
+  }
+  .navigation li a {
+    font-size: 16px;
+  }
+  .navigation > button {
+    display: none;
+  }
+  .hideNav {
+    display: none !important;
+  }
+  .showNav {
+    display: block !important;
+  }
+
+  
+
+  .hideNavigation {
+    /* width: 40%; */
+    /* height: 100vh; */
+    background-color: rgb(0 0 0 / 25%);
+    top: 0;
+    right: 0;
+  }
+  .secondNav {
+    border-bottom: 1px solid #dddddd1c;
+  }
+  .navSection {
+    padding: 0 10px;
+  }
+  .hideMenu {
+    display: block;
+  }
+  .menubar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .hambargarMenu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+  }
+}
+

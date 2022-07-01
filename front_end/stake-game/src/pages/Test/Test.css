@@ -1,0 +1,55 @@
+.TimerTitle {
+  color: var(--fontColor);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.countdown {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0 20px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.presaleText {
+  width: 100%;
+  color: var(--fontColor);
+  font-weight: 300;
+  background: rgb(255 255 255 / 9%);
+  border-radius: 16px;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: 1px solid #dddddd17;
+  transition: 0.2s;
+}
+.presaleText:hover{
+  border: 1px solid #dddddd1a;
+  border-color: var(--primaryColor2);
+}
+
+.presaleh5 {
+  color: var(--fontColor);
+  margin: 20px 0 0 0;
+  font-weight: 400;
+}
+.presaleCards {
+  display: flex;
+  gap: 10px;
+}
+ .Invest{
+  width:175px;
+  height:60px;
+  font-size: larger;
+}
+
+@media only screen and (max-width: 992px) {
+  .presaleCards {
+    display: initial;
+  }
+  .cCard{
+    margin-bottom: 10px;
+  }
+
+
+}

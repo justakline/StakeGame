@@ -1,0 +1,43 @@
+.footer {
+  background: #03070e;
+  width: 100%;
+  padding: 10px 0;
+}
+.footerLeft {
+  color: var(--fontColor2);
+  font-size: 12px;
+}
+.footerRight {
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.footerRight > li {
+  list-style: none;
+  margin-right: 20px;
+}
+
+.footerRight > li > a {
+  color: var(--fontColor2);
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+.footerRight > li > a:hover {
+  color: var(--primaryColor);
+}
+@media only screen and (max-width: 996px) {
+  .footer {
+    position: initial;
+    margin-top: 30px;
+  }
+  .footerLeft {
+    display: block;
+    text-align: center;
+  }
+  .footerRight {
+    margin-top: 4px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,34 @@
+.cusInput {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #dddddd5c;
+  border-image-slice: 1; 
+  transition: 0.2s;
+}
+
+.cusInput:hover{
+  border: 1px solid #dddddd1a;
+  border-color: var(--primaryColor);
+}
+.cusInput > input,
+.cusInput > button {
+  padding: 8px 25px;
+  border: none;
+  background: rgba(0, 0, 0, 0.363);
+  color: var(--fontColor);
+}
+.cusInput > input,
+.cusInput > button:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 996px) {
+  .cusInput {
+    margin-top: 10px;
+  }
+  .cusInput > input,
+  .cusInput > button {
+    padding: 8px 14px;
+  }
+}

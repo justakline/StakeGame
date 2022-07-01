@@ -1,0 +1,14 @@
+{
+  "contracts": {
+    "MockAVAX": "c7b93c5b31ff8ef967f24dc99d07f2f5fe5b3938",
+    "OpenZeppelin/openzeppelin-contracts@4.6.0/ERC20": "0109505ebf827c1fa51b3f4c5a228a412fb060fb",
+    "OpenZeppelin/openzeppelin-contracts@4.6.0/Strings": "1ce946f6a4eaa185320328620ccf999b9e86db7c",
+    "Presale": "5c59ac15031740b09aa77dc7091ddd2f9f435b32",
+    "RiskFarm": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "SpeculateFarm": "7cee8575063aef8018a2c5726076c38f1698a471",
+    "StakeFarm": "1a4d8aefa60f0120242e6140f803c8e54be12440",
+    "StakeToken": "16dbaa7cf23c656c3ccfdfe025fc7a579bb9cc80"
+  },
+  "tests": {},
+  "tx": {}
+}
