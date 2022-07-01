@@ -101,12 +101,12 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background: #2c2f3fa6;
+    background: #2c2f3f;
     height: 60vh;
     position: absolute;
     top: 0;
     left: 0;
-    border-right: 1px solid #37373f66;
+    border-right: 1px solid #37373f;
     border-radius: 1rem;
     padding-top: 10%;
 

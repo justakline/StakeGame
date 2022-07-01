@@ -32,3 +32,9 @@
     padding: 8px 14px;
   }
 }
+@media only screen and (max-width: 319px) {
+  .cusInput >input{
+   width:60vw;
+  }
+ 
+}
