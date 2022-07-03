@@ -35,6 +35,9 @@ const Risk = () => {
 
   var stakingBalance = ContractCall(farmContract, "getUserStakingBalance", [account])
   stakingBalance = stakingBalance? BigNumberToString(stakingBalance) :0;
+  var previousBalance = ContractCall(farmContract, "getUserPreviousStake", [account])
+  previousBalance = previousBalance? BigNumberToString(previousBalance) :0;
+
 
 
   var timeGap = ContractCall(farmContract,"timeGap", [] )
@@ -147,8 +150,10 @@ const Risk = () => {
             </div>
 
             <div className="lastRow">
-              <Card className="CurrentBalance" heading="Current Balance" text={stakingBalance +" STK"} />
-              <Card className="NextChange" heading="Next Change" text={nextRebaseHours+ " hours " + nextRebaseMins+" minutes"} />
+              <Card className="CurrentBalance" heading="Current Balance" text={nextRebaseHours =="Can" && nextRebaseMins =="Risk Again"? stakingBalance +" STK ":previousBalance + " STK"} />
+
+              {/* {nextRebaseHours =="Can" && nextRebaseMins =="Risk Again"? nextRebaseHours+" " + nextRebaseMins :nextRebaseHours+ " hours " + nextRebaseMins+" minutes"} */}
+              <Card className="NextChange" heading="Next Change" text={nextRebaseHours =="Can" && nextRebaseMins =="Risk Again"? nextRebaseHours+" " + nextRebaseMins :nextRebaseHours+ " hours " + nextRebaseMins+" minutes"} />
             </div>
           </div>
           <br />

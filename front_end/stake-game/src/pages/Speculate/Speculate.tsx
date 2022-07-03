@@ -62,7 +62,7 @@ const Speculate = () => {
 
   var secsSinceStart = ContractCall(speculateFarmContract, "getUserSecs", [account])
   var minsSinceStart= secsSinceStart? Math.trunc(parseFloat(secsSinceStart.toString())/60).toString() : 0
-  minsSinceStart= minsSinceStart? (realBalance==0? "0 mins" : (minsSinceStart>60? "Can Unstake!" : minsSinceStart +"")):"0 mins"
+  minsSinceStart= minsSinceStart? (realBalance==0? 0 : (minsSinceStart>60? -1 : minsSinceStart)):0
 
   var showBalance = calculateShowBalance(previousBalance, realBalance, minsSinceStart, timeGuess)
 
@@ -78,7 +78,7 @@ const Speculate = () => {
   var stakeStatus = stake.state.status == "Mining" || stake.state.status == "PendingSignature"
   var unstakeStatus = unstake.state.status == "Mining" || unstake.state.status == "PendingSignature"
   const [inputVal, setInputVal] = useState( ()=>{
-      if(realBalance>0 && minsSinceStart != "Can Unstake!"){
+      if(realBalance>0 && minsSinceStart != -1){
         return previousBalance
       }
       return 0
@@ -116,7 +116,7 @@ const Speculate = () => {
 
   function calculateShowBalance(previousBalance, realBalance, minsSinceStart, timeGuess){
 
-      if(minsSinceStart=="Can Unstake!"){
+      if(minsSinceStart==-1){
         return realBalance;
       }
 
@@ -170,7 +170,7 @@ function handleStake() {
     var amountInput = (document.getElementById("inputAmountSpeculate") as HTMLInputElement)
 
     // if the values we are looking to check are not null, ...
-   if(tokenBalance && realBalance&&previousBalance&& minsSinceStart=="Can Unstake!" && !(realBalance == previousBalance)){
+   if(tokenBalance && realBalance&&previousBalance&& minsSinceStart==-1 && !(realBalance == previousBalance)){
     amountInput.value = realBalance+""
   
    }else{
@@ -200,7 +200,7 @@ function handleStake() {
   var xValues = [];
   var yValues = [];
 
-  var chart= generateChart(((realBalance > 0 && minsSinceStart!= "Can Unstake!" )? previousBalance: inputVal), xValues, yValues);
+  var chart= generateChart(((realBalance > 0 && minsSinceStart!= -1)? previousBalance: inputVal), xValues, yValues);
 
 
  
@@ -212,7 +212,7 @@ function handleStake() {
       amountInput.value = amountInput.value.replaceAll("-", "")
     }
 
-    if(realBalance > 0 && minsSinceStart!= "Can Unstake!" ){
+    if(realBalance > 0 && minsSinceStart!=-1){
       setInputVal(previousBalance)
     }else{
       setInputVal(val)
@@ -243,23 +243,32 @@ function handleStake() {
    gradient?.addColorStop(1, 'rgba(225, 11, 76, 1)')
 
    var mins = 0;
-  if(minsSinceStart!= "Can Claim!"){
-    mins = Number(minsSinceStart);
-  }
+ 
   mins = mins<0? 0: mins;
 
-   var circleX = minsSinceStart<timeGuess? mins-1:timeGuess;
+   var circleX = minsSinceStart<timeGuess? mins:timeGuess;
+   circleX = circleX <=0? 1: circleX;
 
 
    var circleY = minsSinceStart <timeGuess? showBalance: realBalance
 
   //  var circleY = currentBalance>=previousBalance? currentBalance: realBalance
-
+  console.log("mins = " + minsSinceStart )
+  console.log("x = " + circleX )
    let circleXArray = new Array(circleX); for (let i=0; i<circleX+1; ++i) circleXArray[i] = 0;
    circleXArray[circleX] = circleY;
 
    let circleXSize = [...circleXArray];
-   circleXSize[circleX] = 7
+   let circleXHit = 0;
+   if(minsSinceStart>=0){
+    circleXSize[circleX] = 7
+    circleXHit = 40;
+   }else{
+    circleXArray = new Array(0)
+    circleXSize[circleX] = 0;
+    circleXHit = 0;
+    
+   }
  
 
 
@@ -283,6 +292,7 @@ function handleStake() {
             tension:0.3,
             order:2
           },
+          
           {
             type:'line',
             data:circleXArray,
@@ -379,7 +389,8 @@ function handleStake() {
                 <Card heading="Current Balance" text={showBalance +" STK"} />
               </div>
               <Card heading="Original Balance" text={previousBalance +" STK"} />
-              <Card heading="Current Minute" text={minsSinceStart} />
+              
+              <Card heading="Current Minute" text={minsSinceStart ==-1 && showBalance!=0 ? "Can Claim!": minsSinceStart+ " mins" }/>
             </div>
 
             <div className="cartSection">
@@ -387,14 +398,14 @@ function handleStake() {
             </div>
           </div>
          <div className="speculateInputs">
-         {( minsSinceStart== "0 mins" || minsSinceStart == "Can Unstake!")?(
+         {( minsSinceStart== 0 || minsSinceStart == -1)?(
             <>    <Input placeholder="Amount"   id="inputAmountSpeculate" bntText="MAX" btnId={"maxSpeculate"} onChange={e =>changeChart(e)}/>
-                 {(minsSinceStart == "Can Unstake!" && (realBalance!=previousBalance))? <></>: <><Input placeholder="Minutes"  id="inputMinutesSpeculate"  bntText="MAX" btnId={"maxMins"} /> </> }
+                 {(minsSinceStart == -1 && (realBalance!=previousBalance))? <></>: <><Input placeholder="Minutes"  id="inputMinutesSpeculate"  bntText="MAX" btnId={"maxMins"} /> </> }
                 <div className="buttons">
 
                 {(!stakeStatus && !unstakeStatus)?(
 
-                <> {(minsSinceStart=="Can Unstake!" && (realBalance!=previousBalance))? <> </>:<><button className="cBtn Speculate" onClick={() => handleStake()}> Speculate</button> </>     }
+                <> {(minsSinceStart==-1 && (realBalance!=previousBalance))? <> </>:<><button className="cBtn Speculate" onClick={() => handleStake()}> Speculate</button> </>     }
                   <button className="cBtn Unstake" onClick={() => handleUnstake()}>Unstake</button></> 
               ):(<>    
                 <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : "Unstaking"} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
@@ -405,19 +416,19 @@ function handleStake() {
                 {/* have staked */}
                 {(realBalance>previousBalance && minsSinceStart>timeGuess )?<>
                     {/* you are a winner */}
-                    <div className="cHeading">Congratulations, you made {realBalance-previousBalance} STK. Collect in {parseFloat(minsSinceStart)-60} minutes :)</div>
+                    <div className="cHeading">Congratulations, you made {realBalance-previousBalance} STK. Collect in  {60 - minsSinceStart} minutes :)</div>
                     <CircularProgress  style={{marginTop:"8px", justifyContent:"center"}} size={55} color="success"/>
                     </>:<> </>}
                 {/* have staked */}
                 {(realBalance<previousBalance && minsSinceStart>timeGuess )?<>
                 {/* you are a loser */}
-                    <div className="cHeading">Unfortunetly, you lost {previousBalance-realBalance} STK. Speculate again in {parseFloat(minsSinceStart)-60} minutes :(</div>
+                    <div className="cHeading">Unfortunetly, you lost {previousBalance-realBalance} STK. Speculate again in  {60 - minsSinceStart} minutes :(</div>
                     <CircularProgress  style={{marginTop:"8px", justifyContent:"center"}} size={55} color="error"/>
                   </>:<> </>} 
                 
                 {/* You have staked but have not passed your timeguess yet */}
                 {(minsSinceStart<timeGuess )?<>
-                <div className="cHeading">Speculate or unstake in {parseFloat(minsSinceStart)-60} minutes. Good Luck :)</div>
+                <div className="cHeading">Speculate or unstake in {60 - minsSinceStart} minutes. Good Luck :)</div>
                 <CircularProgress  style={{marginTop:"8px", justifyContent:"center", color:"white"}} size={55}/>
                 </>:<> </>
                 }
