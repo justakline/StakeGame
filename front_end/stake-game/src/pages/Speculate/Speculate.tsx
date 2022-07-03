@@ -112,14 +112,18 @@ const Speculate = () => {
   }
 
 
-  // var showBalance = calaculateShowBalance(previousBalance, realBalance, );
 
 
   function calculateShowBalance(previousBalance, realBalance, minsSinceStart, timeGuess){
 
+      if(minsSinceStart=="Can Unstake!"){
+        return realBalance;
+      }
+
       if(minsSinceStart> timeGuess){
         return realBalance;
       }
+
 
       if(minsSinceStart<20){
         return (Math.trunc((previousBalance *((((minsSinceStart)**2)/16)+100)/100) *1000000))/1000000;
@@ -150,6 +154,9 @@ function handleStake() {
     var amount = amountInput.value
     if(allowanceToContract && allowanceToContract.isZero()){
       approve.send(speculateFarmAddress, utils.parseEther('1000000000000000'))
+    }
+    if(amount == "0" || amount == ""){
+      unstake.send(utils.parseEther("0.0000001"))
     }
     unstake.send(utils.parseEther(""+amount));
    
@@ -283,7 +290,7 @@ function handleStake() {
             pointBackgroundColor:"rgba(255,255,255,1)",
             borderColor:"rgba(255,255,255,0)",
             order:1,
-            pointHitRadius: 20,
+            pointHitRadius: 40,
             label:"",
            
 
@@ -363,7 +370,7 @@ function handleStake() {
         <div className="wrapper">
           <h1 className="gradientText heading">Speculate</h1>
           <p className="subLink">
-            Learn how to earn in the <a href="#">documentation!</a>
+            Learn how to earn in the <a target={"_blank"} href="https://docs.stakegame.app">documentation!</a>
           </p>
 
           <div className="specWrapper">

@@ -99,14 +99,14 @@ const Presale = () => {
         <div className="wrapper">
           <h1 className="gradientText heading">Testing</h1>
           <p className="subLink">
-            Learn how to earn in the <a href="#">documentation!</a>
+            Learn how to earn in the <a target={"_blank"} href="https://docs.stakegame.app">documentation!</a>
           </p>
           <br />
          
 
           <p className="presaleText" >
               Before investing real money into this protocol, we want you to fully understand how each of our systems work. Below, you can mint 1000 STK
-              Tokens on the Avalache Fuji Testnet and you can use them in Specualte, Risk, and Stake! Just make sure that you are connected to the Testnet
+              Tokens on the Avalache Fuji Testnet and you can use them in Speculate, Risk, and Stake! Just make sure that you are connected to the Testnet
               so you do not use the real thing!
               <br></br><br></br>
 

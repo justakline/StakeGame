@@ -88,4 +88,7 @@
     max-width: 100%;
     width: 100%;
   }
+  .cartSection{
+    min-height: 300px;
+  }
 }

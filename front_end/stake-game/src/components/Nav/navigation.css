@@ -96,7 +96,7 @@
     display: block;
   }
   .navigation {
-    width: 40%;
+    width: 60%;
     max-width: 300px;
     flex-direction: column;
     justify-content: flex-start;
@@ -109,6 +109,7 @@
     border-right: 1px solid #37373f;
     border-radius: 1rem;
     padding-top: 10%;
+    height: 500px;
 
 
   }
@@ -127,6 +128,7 @@
   }
   .showNav {
     display: block !important;
+    padding: 0px;
   }
 
   
@@ -158,5 +160,15 @@
     color: white;
     font-size: 28px;
   }
+  .HambargarLogo{
+    margin-top: 20px;
+    /* display: none; */
+  }
+
+
 }
+@media only screen and (max-width: 992px) {
+
+}
+
 

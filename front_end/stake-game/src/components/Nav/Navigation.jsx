@@ -57,7 +57,7 @@ const Navigation = () => {
                 <List />
               </button>
               <NavLink to="/" className="Logo">
-                <img src={Logo} alt="Logo" />
+                <img className="HamburgerLogo" src={Logo} alt="Logo" />
               </NavLink>
               {(chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId) ?
                 // <div className="cText">here</div>
@@ -66,7 +66,7 @@ const Navigation = () => {
                 Disconnect    
               </button>):(
                 <button className={`cBtn btn_Hide`} onClick={() => {handleConnection()}}>
-                Connect    
+                Connect  
               </button>
               )): <button className={`cBtn btn_Hide`} onClick={() => {handleConnection()}}>
               Wrong Network    
@@ -110,7 +110,7 @@ const Navigation = () => {
                 <a target={"_blank"} href="https://traderjoe.xyz">TOKEN</a>
               </li>
               <li>
-              <a target={"_blank"} href="https://traderjoe.xyz">DOCS</a>
+              <a target={"_blank"} href="https://docs.stakegame.app">DOCS</a>
 
               </li>
 

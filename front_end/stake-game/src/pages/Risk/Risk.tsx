@@ -124,7 +124,7 @@ const Risk = () => {
         <div className="wrapper">
           <h1 className="gradientText heading">RISK</h1>
           <p className="subLink">
-            Learn how to earn in the <a href="#">documentation!</a>
+            Learn how to earn in the <a target={"_blank"} href="https://docs.stakegame.app">documentation!</a>
           </p>
 
           <div className="RiskCardsWrapper">

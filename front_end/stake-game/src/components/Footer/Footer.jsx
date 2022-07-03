@@ -12,17 +12,17 @@ const Footer = () => {
           <div className="col-md-5">
             <ul className="footerRight">
               <li>
-                <a href="#">
+                <a target={"_blank"} href="https://docs.stakegame.app">
                   <FileEarmarkText />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a target={"_blank"} href="https://twitter.com">
                   <Twitter />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a target={"_blank"} href="https://discord.com">
                   <Discord />
                 </a>
               </li>
