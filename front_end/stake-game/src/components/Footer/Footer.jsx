@@ -12,12 +12,12 @@ const Footer = () => {
           <div className="col-md-5">
             <ul className="footerRight">
               <li>
-                <a target={"_blank"} href="https://docs.stakegame.app">
+                <a target={"_blank"} href="https://stakegame.gitbook.io/stake-game/">
                   <FileEarmarkText />
                 </a>
               </li>
               <li>
-                <a target={"_blank"} href="https://twitter.com">
+                <a target={"_blank"} href="https://twitter.com/StakeGame1">
                   <Twitter />
                 </a>
               </li>

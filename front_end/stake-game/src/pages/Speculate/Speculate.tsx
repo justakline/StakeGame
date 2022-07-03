@@ -380,7 +380,7 @@ function handleStake() {
         <div className="wrapper">
           <h1 className="gradientText heading">Speculate</h1>
           <p className="subLink">
-            Learn how to earn in the <a target={"_blank"} href="https://docs.stakegame.app">documentation!</a>
+            Learn how to earn in the <a target={"_blank"} href="https://stakegame.gitbook.io/stake-game/">documentation!</a>
           </p>
 
           <div className="specWrapper">

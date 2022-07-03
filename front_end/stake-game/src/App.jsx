@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={<Stake />} />
           <Route path="/risk" element={<Risk />} />
           <Route path="/speculate" element={<Speculate />} />
-          <Route path="/presale" element={<Presale />} />
+          {/* <Route path="/presale" element={<Presale />} /> */}
           <Route path="/test" element={<Test />} />
           <Route path="/*" element={<Notfound />} />
         </Routes>

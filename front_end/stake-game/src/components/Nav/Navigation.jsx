@@ -107,10 +107,10 @@ const Navigation = () => {
                 <NavLink to="/test">TEST</NavLink>
               </li>
               <li>
-                <a target={"_blank"} href="https://traderjoe.xyz">TOKEN</a>
+                <a to="/" target={"_blank"} href="https://traderjoe.xyz">TOKEN</a>
               </li>
               <li>
-              <a target={"_blank"} href="https://docs.stakegame.app">DOCS</a>
+              <a target={"_blank"} href="https://stakegame.gitbook.io/stake-game/">DOCS</a>
 
               </li>
 
