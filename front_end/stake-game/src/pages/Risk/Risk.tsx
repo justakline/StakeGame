@@ -87,23 +87,27 @@ const Risk = () => {
 
 
   function handleStake() {
-    if(allowanceToContract && allowanceToContract.isZero()){
-      approve.send(farmAddress, utils.parseEther('1000000000000000'))
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
+      if(allowanceToContract && allowanceToContract.isZero()){
+        approve.send(farmAddress, utils.parseEther('1000000000000000'))
+      }
+      var amountInput = (document.getElementById("inputAmountRisk") as HTMLInputElement)
+      if(nextRebaseHours== "Can" && nextRebaseMins=="Risk Again" && (amountInput.value =="" || amountInput.value == "0")){
+        restake.send();
+      }else{
+    
+        var amount = utils.parseEther(""+amountInput.value)
+        stake.send(amount)
     }
-    var amountInput = (document.getElementById("inputAmountRisk") as HTMLInputElement)
-    if(nextRebaseHours== "Can" && nextRebaseMins=="Risk Again" && (amountInput.value =="" || amountInput.value == "0")){
-      restake.send();
-    }else{
-  
-      var amount = utils.parseEther(""+amountInput.value)
-      stake.send(amount)
-    }
+  }
       
   }
   function handleUnstake() {
-    var amountInput = (document.getElementById("inputAmountRisk") as HTMLInputElement)
-    var amount = utils.parseEther(""+amountInput.value)
-    unstake.send(amount)
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
+      var amountInput = (document.getElementById("inputAmountRisk") as HTMLInputElement)
+      var amount = utils.parseEther(""+amountInput.value)
+      unstake.send(amount)
+    }
 
   }
   

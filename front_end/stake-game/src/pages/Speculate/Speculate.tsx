@@ -138,28 +138,32 @@ const Speculate = () => {
 function handleStake() {
   var amount = amountInput.value
   var timeGuess = minuteInput.value
+
+  if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
     if(allowanceToContract && allowanceToContract.isZero()){
-      approve.send(speculateFarmAddress, utils.parseEther('1000000000000000'))
+
+        approve.send(speculateFarmAddress, utils.parseEther('1000000000000000'))
+
     }
 
-
-    stake.send(utils.parseEther(""+amount), Math.trunc(parseFloat(timeGuess)));
-
-    
+      stake.send(utils.parseEther(""+amount), Math.trunc(parseFloat(timeGuess)));
+    }
 
   
       
   }
   function handleUnstake() {
     var amount = amountInput.value
-    if(allowanceToContract && allowanceToContract.isZero()){
-      approve.send(speculateFarmAddress, utils.parseEther('1000000000000000'))
-    }
-    if(amount == "0" || amount == ""){
-      unstake.send(utils.parseEther("0.0000001"))
-    }
-    unstake.send(utils.parseEther(""+amount));
-   
+    
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
+      if(allowanceToContract && allowanceToContract.isZero()){
+        approve.send(speculateFarmAddress, utils.parseEther('1000000000000000'))
+      }
+      if(amount == "0" || amount == ""){
+        unstake.send(utils.parseEther("0.0000001"))
+      }
+      unstake.send(utils.parseEther(""+amount));
+  }
 
   }
   
@@ -208,6 +212,13 @@ function handleStake() {
   function changeChart(e){
     var val = e.target.value;
     val = val? val:0
+    //Some errors happen if don't get rid of 0... thinks its hex
+    if(val[0] == 0 && val.length > 1){
+      amountInput.value = "";
+        val = val[0] == 0 && val.length > 1? 0:0
+    }
+  
+
    if(amountInput.value.includes("-")){
       amountInput.value = amountInput.value.replaceAll("-", "")
     }
@@ -215,6 +226,7 @@ function handleStake() {
     if(realBalance > 0 && minsSinceStart!=-1){
       setInputVal(previousBalance)
     }else{
+
       setInputVal(val)
     }
 
@@ -247,14 +259,13 @@ function handleStake() {
   mins = mins<0? 0: mins;
 
    var circleX = minsSinceStart<timeGuess? mins:timeGuess;
-   circleX = circleX <=0? 1: circleX;
+   circleX = circleX <=0? 0: circleX;
 
 
    var circleY = minsSinceStart <timeGuess? showBalance: realBalance
 
   //  var circleY = currentBalance>=previousBalance? currentBalance: realBalance
-  console.log("mins = " + minsSinceStart )
-  console.log("x = " + circleX )
+
    let circleXArray = new Array(circleX); for (let i=0; i<circleX+1; ++i) circleXArray[i] = 0;
    circleXArray[circleX] = circleY;
 
@@ -398,7 +409,7 @@ function handleStake() {
             </div>
           </div>
          <div className="speculateInputs">
-         {( minsSinceStart== 0 || minsSinceStart == -1)?(
+         {(minsSinceStart == -1 || showBalance ==0)?(
             <>    <Input placeholder="Amount"   id="inputAmountSpeculate" bntText="MAX" btnId={"maxSpeculate"} onChange={e =>changeChart(e)}/>
                  {(minsSinceStart == -1 && (realBalance!=previousBalance))? <></>: <><Input placeholder="Minutes"  id="inputMinutesSpeculate"  bntText="MAX" btnId={"maxMins"} /> </> }
                 <div className="buttons">

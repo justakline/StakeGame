@@ -61,6 +61,7 @@ const Presale = () => {
   maxButton?.addEventListener("click", maxClick)
 
   function handleStake() {
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
     if(allowanceToContract && allowanceToContract.isZero()){
       approve.send(farmAddress, utils.parseEther('1000000000000000'))
     }
@@ -68,6 +69,7 @@ const Presale = () => {
     var amount = utils.parseEther(""+amountInput.value)
 
     stake.send(amount)
+  }
       
   }
 

@@ -86,19 +86,21 @@ const Stake = () => {
 
 
   function handleStake() {
-    if(allowanceToContract && allowanceToContract.isZero()){
-      approve.send(farmAddress, utils.parseEther('1000000000000000'))
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
+      if(allowanceToContract && allowanceToContract.isZero()){
+        approve.send(farmAddress, utils.parseEther('1000000000000000'))
+      }
+      var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
+      var amount = utils.parseEther(""+amountInput.value)
+      stake.send(amount)
     }
-    var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
-    var amount = utils.parseEther(""+amountInput.value)
-    stake.send(amount)
-      
   }
   function handleUnstake() {
-    var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
-    var amount = utils.parseEther(""+amountInput.value)
-    unStake.send(amount)
-
+    if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
+      var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
+      var amount = utils.parseEther(""+amountInput.value)
+      unStake.send(amount)
+    }
   }
   
 
