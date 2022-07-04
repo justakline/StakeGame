@@ -92,6 +92,7 @@ const Stake = () => {
       }
       var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
       var amount = utils.parseEther(""+amountInput.value)
+      
       stake.send(amount)
     }
   }
@@ -99,6 +100,7 @@ const Stake = () => {
     if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
       var amountInput = (document.getElementById("inputAmountStake") as HTMLInputElement)
       var amount = utils.parseEther(""+amountInput.value)
+      console.log(""+amountInput.value)
       unStake.send(amount)
     }
   }

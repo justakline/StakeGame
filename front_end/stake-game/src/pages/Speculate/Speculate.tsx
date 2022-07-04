@@ -17,6 +17,7 @@ import { useEthers,useEtherBalance, useCall, useTokenBalance, useContractFunctio
 import BigNumberToString from "../../hooks/BigNumberToString";
 import ContractCall from "../../hooks/ContractCall";
 import { CircularProgress } from "@mui/material";
+import { nodeModuleNameResolver } from "typescript";
 
 
 
@@ -205,17 +206,65 @@ function handleStake() {
   var yValues = [];
 
   var chart= generateChart(((realBalance > 0 && minsSinceStart!= -1)? previousBalance: inputVal), xValues, yValues);
+  var circleInfo = generateCircleInfo( (minsSinceStart <timeGuess? minsSinceStart: timeGuess) , (minsSinceStart <timeGuess? showBalance: realBalance))
 
+  function generateCircleInfo(xValue ,yValue){
 
- 
+    var el= document.getElementById("chart") as HTMLCanvasElement
+
+    var widthSize = el? el.width:0;
+
+    var x = xValue
+    if(x<8){
+      x = 8
+    }    
+    if(x>50){
+      x = 50
+    } 
+    
+    var circ;
+
+    if(minsSinceStart!= -1){
+      if(widthSize && widthSize>400){
+      circ = (<>
+        
+        <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30)-6 + "%", left:""+((100*x/60)-4)+"%"}}>
+          <p className="circleInfoText Amount"> {Math.trunc(yValue)} STK</p>
+          {/* <p className="circleInfoText Min"> {minsSinceStart<timeGuess?minsSinceStart:timeGuess} min</p> */}
+          
+          </div>
+      </>)
+      }else{
+
+        circ = (<>
+        
+          <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30) + "%", left:""+((100*x/60)-4)+"%"}}>
+            <p className="circleInfoText"> {Math.trunc(yValue)} STK</p>
+            
+            </div>
+        </>)
+
+      }
+    }else{
+      circ = (<></>)
+    }
+    return circ
+
+ }
 
   function changeChart(e){
     var val = e.target.value;
     val = val? val:0
     //Some errors happen if don't get rid of 0... thinks its hex
-    if(val[0] == 0 && val.length > 1){
-      amountInput.value = "";
-        val = val[0] == 0 && val.length > 1? 0:0
+    if(val[0] == 0 && val.length > 1 ){
+      if((val+"").includes("0.")){
+
+      }else{
+    
+      amountInput.value = (val+"").replaceAll("0", "");
+      val = amountInput.value;
+        val = val == "" ? 0:val
+      }
     }
   
 
@@ -242,10 +291,10 @@ function handleStake() {
 
   function generateChart(initialValue, xValues, yValues){
     
-    generateData((initialValue +" * ((x**2)/16 +100)/100"), 1, 20, 1, xValues, yValues);
-    generateData( (initialValue +" * ((x**2)/7 +68)/100"), 21, 40, 1, xValues, yValues);
+  generateData((initialValue +" * ((x**2)/16 +100)/100"), 1, 20, 1, xValues, yValues);
+  generateData( (initialValue +" * ((x**2)/7 +68)/100"), 21, 40, 1, xValues, yValues);
    generateData( (initialValue +" * ((x**2)/2 -503)/100"), 41, 60, 1, xValues, yValues);
-   var ctx : any = document.getElementById("chart")
+  var ctx : any = document.getElementById("chart")
 
    ctx = ctx?.getContext("2d")
 
@@ -254,19 +303,17 @@ function handleStake() {
    gradient?.addColorStop(0, 'rgba(139, 161, 248, 1)')
    gradient?.addColorStop(1, 'rgba(225, 11, 76, 1)')
 
-   var mins = 0;
- 
-  mins = mins<0? 0: mins;
+   
 
-   var circleX = minsSinceStart<timeGuess? mins:timeGuess;
-   circleX = circleX <=0? 0: circleX;
-
-
+   var circleX = minsSinceStart<timeGuess? minsSinceStart:timeGuess; 
+   circleX = circleX <=0? 0: circleX-1;
    var circleY = minsSinceStart <timeGuess? showBalance: realBalance
+
+  
 
   //  var circleY = currentBalance>=previousBalance? currentBalance: realBalance
 
-   let circleXArray = new Array(circleX); for (let i=0; i<circleX+1; ++i) circleXArray[i] = 0;
+   let circleXArray = new Array(circleX); for (let i=0; i<circleX; ++i) circleXArray[i] = 0;
    circleXArray[circleX] = circleY;
 
    let circleXSize = [...circleXArray];
@@ -278,7 +325,6 @@ function handleStake() {
     circleXArray = new Array(0)
     circleXSize[circleX] = 0;
     circleXHit = 0;
-    
    }
  
 
@@ -288,7 +334,7 @@ function handleStake() {
       data={{
        
         labels: xValues,
-      
+       
         datasets: [ 
           { 
             type:'line',
@@ -307,29 +353,43 @@ function handleStake() {
           {
             type:'line',
             data:circleXArray,
+            
             pointRadius:circleXSize,
             pointBackgroundColor:"rgba(255,255,255,1)",
             borderColor:"rgba(255,255,255,0)",
             order:1,
             pointHitRadius: 40,
             label:"",
-           
+            
+          },
+           {
+            type:'line',
+            data:[{x:circleX+1, y:0}, {x:circleX+1, y:minsSinceStart!=-1? circleY : 0}],
+            
+            pointRadius:0,
+            pointBackgroundColor:"rgba(255,255,255,0)",
+            pointBorderColor:"rgba(255,255,255,0)",
 
+            borderColor:"rgba(255,255,255,1)",
+            order:3,
+            pointHitRadius: 0,
+            label:"Minutes",
+            animation:false,
       
-        
           }
         ],
         
       } } 
       
       options={{   
-        
+      
 
         plugins: {
-          
-          tooltip: {
-            
+          tooltip:{
+            enabled:false,
           }
+         
+          
         },
         
         scales: {
@@ -401,11 +461,12 @@ function handleStake() {
               </div>
               <Card heading="Original Balance" text={previousBalance +" STK"} />
               
-              <Card heading="Current Minute" text={minsSinceStart ==-1 && showBalance!=0 ? "Can Claim!": minsSinceStart+ " mins" }/>
+              <Card heading="Time Guess" text={minsSinceStart ==-1 && showBalance!=0 ? "Can Claim!": timeGuess+ " mins" }/>
             </div>
 
             <div className="cartSection">
              {chart}
+             {circleInfo}
             </div>
           </div>
          <div className="speculateInputs">
@@ -419,7 +480,7 @@ function handleStake() {
                 <> {(minsSinceStart==-1 && (realBalance!=previousBalance))? <> </>:<><button className="cBtn Speculate" onClick={() => handleStake()}> Speculate</button> </>     }
                   <button className="cBtn Unstake" onClick={() => handleUnstake()}>Unstake</button></> 
               ):(<>    
-                <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : "Unstaking"} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
+                <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : unstakeStatus?"Unstaking":""} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
             )}
               
                </div>
