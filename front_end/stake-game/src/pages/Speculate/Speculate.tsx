@@ -224,27 +224,35 @@ function handleStake() {
     
     var circ;
 
-    if(minsSinceStart!= -1){
-      if(widthSize && widthSize>400){
+    if(minsSinceStart!= -1 && minsSinceStart!=0){
       circ = (<>
         
-        <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30)-6 + "%", left:""+((100*x/60)-4)+"%"}}>
-          <p className="circleInfoText Amount"> {Math.trunc(yValue)} STK</p>
-          {/* <p className="circleInfoText Min"> {minsSinceStart<timeGuess?minsSinceStart:timeGuess} min</p> */}
-          
-          </div>
-      </>)
-      }else{
-
-        circ = (<>
-        
-          <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30) + "%", left:""+((100*x/60)-4)+"%"}}>
-            <p className="circleInfoText"> {Math.trunc(yValue)} STK</p>
+          <div className="circleInfo" style={{top:  "10%", left:"10%"}}>
+           <p className="circleInfoText Amount"> {(Math.trunc(yValue *100))/100} STK</p> {/*The 100 truncates to the 0.01 place */}
+            {/* <p className="circleInfoText Min"> {minsSinceStart<timeGuess?minsSinceStart:timeGuess} min</p> */}
             
             </div>
-        </>)
+       </>)
+      // if(widthSize && widthSize>400){
+      // circ = (<>
+        
+      //   <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30)-6 + "%", left:""+((100*x/60)-4)+"%"}}>
+      //     <p className="circleInfoText Amount"> {Math.trunc(yValue)} STK</p>
+      //     {/* <p className="circleInfoText Min"> {minsSinceStart<timeGuess?minsSinceStart:timeGuess} min</p> */}
+          
+      //     </div>
+      // </>)
+      // }else{
 
-      }
+      //   circ = (<>
+        
+      //     <div className="circleInfo" style={{bottom: (24+(1+x*0.0029)**30) + "%", left:""+((100*x/60)-4)+"%"}}>
+      //       <p className="circleInfoText"> {Math.trunc(yValue)} STK</p>
+            
+      //       </div>
+      //   </>)
+
+      // }
     }else{
       circ = (<></>)
     }
@@ -337,6 +345,8 @@ function handleStake() {
        
         datasets: [ 
           { 
+
+            // SPECULATE Line Graph 
             type:'line',
             label : "STK/Time",
             data: yValues,
@@ -351,11 +361,13 @@ function handleStake() {
           },
           
           {
+
+            //CIRCLE placement
             type:'line',
             data:circleXArray,
             
             pointRadius:circleXSize,
-            pointBackgroundColor:"rgba(255,255,255,1)",
+            pointBackgroundColor: minsSinceStart!=0? "rgba(255,255,255,1)" : "rgba(255,255,255,0)" ,
             borderColor:"rgba(255,255,255,0)",
             order:1,
             pointHitRadius: 40,
@@ -363,6 +375,7 @@ function handleStake() {
             
           },
            {
+            //LINE for the cirlce
             type:'line',
             data:[{x:circleX+1, y:0}, {x:circleX+1, y:minsSinceStart!=-1? circleY : 0}],
             
@@ -386,7 +399,7 @@ function handleStake() {
 
         plugins: {
           tooltip:{
-            enabled:false,
+            // enabled:false,
           }
          
           
