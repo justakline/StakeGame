@@ -36,7 +36,7 @@ function App() {
           <Route path="/speculate" element={<Speculate />} />
           <Route path="/presale" element={<Presale />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/*" element={<Notfound />} />
+          {/* <Route path="/*" element={<Notfound />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
