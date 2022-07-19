@@ -27,5 +27,13 @@
     "TestFarm": [
       "0x6CdD6EF0B6b1E575aF81a449aE1b192deE5AaA06"
     ]
+  },
+  "43114": {
+    "Presale": [
+      "0xd1Ff4f70b7476f20B9f00B64Da505420BCdd7fF0"
+    ],
+    "StakeToken": [
+      "0x59e8d4bac8c780979f3Af8f688dd00661B889dF1"
+    ]
   }
 }

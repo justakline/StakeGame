@@ -490,8 +490,8 @@ function handleStake() {
 
                 {(!stakeStatus && !unstakeStatus)?(
 
-                <> {(minsSinceStart==-1 && (realBalance!=previousBalance))? <> </>:<><button className="cBtn Speculate" onClick={() => handleStake()}> Speculate</button> </>     }
-                  <button className="cBtn Unstake" onClick={() => handleUnstake()}>Unstake</button></> 
+                <> {(minsSinceStart==-1 && (realBalance!=previousBalance))? <> </>:<><button className="cBtn Speculate" disabled={speculateFarmAddress==constants.AddressZero} onClick={() => handleStake()}> Speculate</button> </>     }
+                  <button className="cBtn Unstake" disabled={speculateFarmAddress==constants.AddressZero} onClick={() => handleUnstake()}>Unstake</button></> 
               ):(<>    
                 <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : unstakeStatus?"Unstaking":""} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
             )}

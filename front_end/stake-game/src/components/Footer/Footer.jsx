@@ -22,7 +22,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a target={"_blank"} href="https://discord.com">
+                <a target={"_blank"} href="https://discord.gg/RFYx3ytEw5">
                   <Discord />
                 </a>
               </li>

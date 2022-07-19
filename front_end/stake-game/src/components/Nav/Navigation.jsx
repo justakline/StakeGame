@@ -115,7 +115,7 @@ const Navigation = () => {
               </li>
 
               {
-              (chainId== AvalancheTestnet.chainId)?(
+              (chainId== AvalancheTestnet.chainId || chainId == Avalanche.chainId)?(
               (isConnected) ? 
                 (<button className={`cBtn btnToggle`} onClick={() => {handleConnection()}}>
                  Disconnect 

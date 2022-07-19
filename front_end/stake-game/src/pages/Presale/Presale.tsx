@@ -23,14 +23,17 @@ const Presale = () => {
   const { activateBrowserWallet, account, deactivate, chainId, active } = useEthers()
   const etherBalance = useEtherBalance(account)
 
+
   //Change when launch on mainnet
-  var cID = (chainId==AvalancheTestnet.chainId )?chainId:undefined
- //Change when launch on mainnet
+  var cID = (chainId==Avalanche.chainId )?chainId:undefined
+ //Change when launch on mainnet  
+ console.log(cID)
   const tokenInterface= new utils.Interface(StakeToken.abi)
   const tokenAddress = cID? Addresses[String(chainId)]["StakeToken"][0]: constants.AddressZero
   const tokenContract = new Contract(tokenAddress,tokenInterface)
 
   const farmInterface= new utils.Interface(Farm.abi)
+  
   const farmAddress = cID? Addresses[String(chainId)]["Presale"][0]: constants.AddressZero
   const farmContract= new Contract(farmAddress, farmInterface)
   var tokenBalanceBig = useEtherBalance(account)
@@ -88,7 +91,7 @@ const Presale = () => {
   // set the restart function for time countdown
   function timeCountdown() {
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 1300);
+    time.setSeconds(time.getSeconds() + timeBetween);
  
     restart(time);
   }
@@ -98,7 +101,17 @@ const Presale = () => {
   }, []);
 
   const time = new Date();
-  time.setSeconds(time.getSeconds() + 600);
+  const endTime = new Date("July 22, 2022 19:00:00")
+
+  const timeBetween =  Math.trunc(((Date.parse(endTime.toISOString())).valueOf() - (Date.parse(time.toISOString())).valueOf())/1000)
+
+
+  // console.log(Date.parse(endTime.toISOString() .valueOf()))
+  // console.log(Date.parse(time.toISOString() .valueOf()))
+  // console.log(Date.parse(endTime.toISOString() .valueOf()))
+  // console.log(time.getSeconds())
+  // console.log(time.getSeconds())
+  // time.setSeconds(time.getSeconds() + 70000);
 
   const {
     seconds,
@@ -143,11 +156,11 @@ const Presale = () => {
           </p>
           
           <h5 className="presaleh5">1 AVAX = 100 STK</h5>
-          <Input id="inputAmountInvest" placeholder="Amount" bntText="MAX" btnId={"maxInvest"} />
+          <Input id="inputAmountInvest" placeholder="Amount of AVAX" bntText="MAX" btnId={"maxInvest"} />
 
           <div className="buttons">
           {(!stakeStatus )?(
-            <><button className="cBtn" onClick={() => handleStake()}> Invest</button></>) :
+            <><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleStake()}> Invest AVAX</button></>) :
               <>    <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Investing" : ""} </div><CircularProgress style={{color:"green"}}size={25}/>   </>
           }
           </div>

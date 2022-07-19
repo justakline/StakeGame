@@ -32,4 +32,9 @@ contract StakeToken is ERC20 {
         require(minters[newMinter] != true, "Minter already added");
         minters[newMinter] = true;
     }
+
+    function removeMinter(address minter) public onlyMinter {
+        require(minters[minter] == true, "The address is not yet a minter");
+        minters[minter] = false;
+    }
 }

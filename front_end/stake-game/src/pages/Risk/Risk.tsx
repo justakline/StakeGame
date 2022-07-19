@@ -23,11 +23,7 @@ const Risk = () => {
   var converted = etherBalance? BigNumberToString(etherBalance): 0
   const tokenInterface= new utils.Interface(StakeToken.abi)
   const tokenAddress = cID? Addresses[String(chainId)]["StakeToken"][0]: constants.AddressZero
-
   const tokenContract = new Contract(tokenAddress,tokenInterface)
-
- 
-
   const farmInterface= new utils.Interface(RiskFarm.abi)
   const farmAddress = cID? Addresses[String(chainId)]["RiskFarm"][0]: constants.AddressZero
   const farmContract= new Contract(farmAddress, farmInterface)
@@ -37,7 +33,9 @@ const Risk = () => {
   stakingBalance = stakingBalance? BigNumberToString(stakingBalance) :0;
   var previousBalance = ContractCall(farmContract, "getUserPreviousStake", [account])
   previousBalance = previousBalance? BigNumberToString(previousBalance) :0;
+  var farmState = ContractCall(farmContract, "riskAllowed")
 
+  
 
 
   var timeGap = ContractCall(farmContract,"timeGap", [] )
@@ -163,9 +161,17 @@ const Risk = () => {
           <br />
           <Input id="inputAmountRisk"placeholder="Amount" bntText="MAX" btnId={"maxRisk"} />
           <div className="buttons">
-          {(!stakeStatus && !unstakeStatus)?(
-            <><button className="cBtn" onClick={() => handleStake()}> Stake</button><button className="cBtn" onClick={() => handleUnstake()}>Unstake</button></>) :
-              <>    <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : "Unstaking"} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
+            
+          {
+          
+          
+          
+            (!stakeStatus && !unstakeStatus)?(
+              <><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleStake()}> Stake</button><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleUnstake()}>Unstake</button></>) :
+                <>    <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : "Unstaking"} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
+          
+          
+          
           }
           </div>
         </div>

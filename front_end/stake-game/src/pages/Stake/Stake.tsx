@@ -143,7 +143,7 @@ const Stake = () => {
 
           <div className="buttons">
             {(!stakeStatus && !unstakeStatus)?(
-            <><button className="cBtn" onClick={() => handleStake()}> Stake</button><button className="cBtn" onClick={() => handleUnstake()}>Unstake</button></>) :
+            <><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleStake()}> Stake</button><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleUnstake()}>Unstake</button></>) :
               <>    <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "Staking" : "Unstaking"} </div><CircularProgress style={{color:"white"}}size={25}/>   </>
             }
           </div>

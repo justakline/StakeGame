@@ -17,21 +17,23 @@ from web3 import Web3
 def main():
     # deploy_stake_token(True)
     # deploy_presale(True)
-    deploy_speculate_farm(True)
+    # deploy_speculate_farm(True)
     # deploy_risk_farm(True)
     # deploy_stake_farm(True)
     # deploy_test_farm(True)
-    update_front_end()
+    # update_front_end()
+    presale = Presale[-1]
+    print(presale.isOpen())
 
-    gas_strategy = ExponentialScalingStrategy("25 gwei", "100 gwei")
+    # gas_strategy = ExponentialScalingStrategy("25 gwei", "100 gwei")
     # print(RiskFarm)
-    speculateFarm = SpeculateFarm[-1]
-    riskFarm = RiskFarm[-1]
-    stakeToken = StakeToken[-1]
-    account = get_account()
+    # speculateFarm = SpeculateFarm[-1]
+    # riskFarm = RiskFarm[-1]
+    # stakeToken = StakeToken[-1]
+    # account = get_account()
     # tx = farm.setFarmOpen({"from":account, "gas_price" : gas_strategy})
     # tx.wait(1)
-    amount  = Web3.toWei(100, "ether")
+    # amount  = Web3.toWei(100, "ether")
     # tx = riskFarm.setFarmOpen( {"from":account, "gas_price":gas_strategy})
     # tx.wait(1)
     # tx = riskFarm.setTeam( account.address, {"from":account, "gas_price":gas_strategy})
@@ -39,10 +41,10 @@ def main():
 
 
 
-    tx = speculateFarm.setFarmOpen({"from":account, "gas_price":gas_strategy})
-    tx.wait(1)
-    tx = speculateFarm.setTeam( account.address, {"from":account, "gas_price":gas_strategy})
-    tx.wait(1)
+    # tx = speculateFarm.setFarmOpen({"from":account, "gas_price":gas_strategy})
+    # tx.wait(1)
+    # tx = speculateFarm.setTeam( account.address, {"from":account, "gas_price":gas_strategy})
+    # tx.wait(1)
 
     # tx=speculateFarm.stake(amount, 60,  {"from":account, "gas_price":gas_strategy})
     # tx.wait(1)

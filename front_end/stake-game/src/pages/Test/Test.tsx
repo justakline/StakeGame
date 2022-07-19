@@ -122,7 +122,7 @@ const Presale = () => {
 
           <div className="buttons">
           {(!stakeStatus )?(
-            <><button className="cBtn" onClick={() => handleStake()}> Mint</button></>) :
+            <><button className="cBtn" disabled={farmAddress==constants.AddressZero} onClick={() => handleStake()}> Mint</button></>) :
               <>    <div className="cHeading" style={{marginTop:"-4px"}}>{stakeStatus? "" : ""} </div><CircularProgress style={{color:"green"}}size={25}/>   </>
           }
           </div>
