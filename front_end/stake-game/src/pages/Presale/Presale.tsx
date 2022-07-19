@@ -9,7 +9,7 @@ import Timer from "../../components/Timer/Timer";
 
 import { useTimer } from "react-timer-hook";
 
-import { useEthers, useEtherBalance,useContractFunction, useTokenAllowance, useTokenBalance, Avalanche, AvalancheTestnet } from "@usedapp/core";
+import { useEthers, useEtherBalance,useContractFunction, useTokenAllowance, useTokenBalance, Avalanche, AvalancheTestnet, useSendTransaction } from "@usedapp/core";
 import { utils, constants } from "ethers";
 import BigNumberToString from "../../hooks/BigNumberToString";
 import ContractCall from "../../hooks/ContractCall";
@@ -27,13 +27,12 @@ const Presale = () => {
   //Change when launch on mainnet
   var cID = (chainId==Avalanche.chainId )?chainId:undefined
  //Change when launch on mainnet  
- console.log(cID)
+ 
   const tokenInterface= new utils.Interface(StakeToken.abi)
   const tokenAddress = cID? Addresses[String(chainId)]["StakeToken"][0]: constants.AddressZero
   const tokenContract = new Contract(tokenAddress,tokenInterface)
 
   const farmInterface= new utils.Interface(Farm.abi)
-  
   const farmAddress = cID? Addresses[String(chainId)]["Presale"][0]: constants.AddressZero
   const farmContract= new Contract(farmAddress, farmInterface)
   var tokenBalanceBig = useEtherBalance(account)
@@ -47,8 +46,14 @@ const Presale = () => {
 
 
   const stake = useContractFunction(farmContract, 'buy', { transactionName: 'buy' })
+  const send = useSendTransaction({ transactionName: 'Send AVAX' })
   const approve = useContractFunction(tokenContract, "approve", {transactionName:"apporve"} )
+  
   const allowanceToContract = useTokenAllowance(tokenAddress, account, farmAddress)
+  
+
+  console.log("farm address = " + tokenAddress)
+  console.log(allowanceToContract?.toString())
 
   var stakeStatus = stake.state.status == "Mining" || stake.state.status == "PendingSignature"
 
@@ -65,13 +70,17 @@ const Presale = () => {
 
   function handleStake() {
     if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
-    if(allowanceToContract && allowanceToContract.isZero()){
-      approve.send(farmAddress, utils.parseEther('1000000000000000'))
-    }
-    var amountInput = (document.getElementById("inputAmountInvest") as HTMLInputElement)
-    var amount = utils.parseEther(""+amountInput.value)
+      if(allowanceToContract && allowanceToContract.isZero()){
+        console.log("here")
+        approve.send(farmAddress, utils.parseEther('1000000000000000'))
+      }
+      
+      var amountInput = (document.getElementById("inputAmountInvest") as HTMLInputElement)
+      var amount = utils.parseEther(""+amountInput.value)
+      console.log(amount)
 
-    stake.send(amount)
+      stake.send(amount, {value:amount})
+      // send.sendTransaction({to:farmAddress, value:amount})
   }
       
   }
@@ -105,13 +114,6 @@ const Presale = () => {
 
   const timeBetween =  Math.trunc(((Date.parse(endTime.toISOString())).valueOf() - (Date.parse(time.toISOString())).valueOf())/1000)
 
-
-  // console.log(Date.parse(endTime.toISOString() .valueOf()))
-  // console.log(Date.parse(time.toISOString() .valueOf()))
-  // console.log(Date.parse(endTime.toISOString() .valueOf()))
-  // console.log(time.getSeconds())
-  // console.log(time.getSeconds())
-  // time.setSeconds(time.getSeconds() + 70000);
 
   const {
     seconds,
@@ -149,6 +151,10 @@ const Presale = () => {
               After the presale, we will be using the funds as initlal liquidity, selling at an inital price of 1 STK = 0.01 AVAX . For the presale, 
               there will be a hard cap of 500 AVAX/50,000 STK dispersed.
               There is a max buy of 20 AVAX/2000 STK
+              <br></br><br></br>
+
+              Remember to be connected to the correct account, and to be connected to the Avalanche Network!
+
               <br></br><br></br>
 
               Thank you for investing! :)

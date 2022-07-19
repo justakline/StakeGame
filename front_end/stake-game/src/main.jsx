@@ -10,7 +10,8 @@ import { WagmiConfig, createClient, chain } from 'wagmi'
 const config = {
   readOnlyChainId: AvalancheTestnet.chainId,
   readOnlyUrls: {
-    [AvalancheTestnet.chainId]: "https://api.avax-test.network/ext/bc/C/rpc"
+    [AvalancheTestnet.chainId]: "https://api.avax-test.network/ext/bc/C/rpc",
+    [Avalanche.chainId]: "https://api.avax.network/ext/bc/C/rpc"
   }, notifications: {
     expirationPeriod: 1000,
     checkInterval: 1000,

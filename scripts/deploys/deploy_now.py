@@ -23,6 +23,9 @@ def main():
     # deploy_test_farm(True)
     # update_front_end()
     presale = Presale[-1]
+    account =get_account()
+    print(presale.isOpen())
+    presale.setPresaleState(True, {"from":account})
     print(presale.isOpen())
 
     # gas_strategy = ExponentialScalingStrategy("25 gwei", "100 gwei")
