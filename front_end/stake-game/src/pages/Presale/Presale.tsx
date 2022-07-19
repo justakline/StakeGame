@@ -50,10 +50,7 @@ const Presale = () => {
   const approve = useContractFunction(tokenContract, "approve", {transactionName:"apporve"} )
   
   const allowanceToContract = useTokenAllowance(tokenAddress, account, farmAddress)
-  
 
-  console.log("farm address = " + tokenAddress)
-  console.log(allowanceToContract?.toString())
 
   var stakeStatus = stake.state.status == "Mining" || stake.state.status == "PendingSignature"
 
@@ -71,13 +68,12 @@ const Presale = () => {
   function handleStake() {
     if((chainId == AvalancheTestnet.chainId || chainId ==Avalanche.chainId)){
       if(allowanceToContract && allowanceToContract.isZero()){
-        console.log("here")
+
         approve.send(farmAddress, utils.parseEther('1000000000000000'))
       }
       
       var amountInput = (document.getElementById("inputAmountInvest") as HTMLInputElement)
       var amount = utils.parseEther(""+amountInput.value)
-      console.log(amount)
 
       stake.send(amount, {value:amount})
       // send.sendTransaction({to:farmAddress, value:amount})
