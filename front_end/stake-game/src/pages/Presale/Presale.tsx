@@ -170,7 +170,7 @@ const Presale = () => {
           <br />
           <div className="presaleCards">
             <Card heading="Amount You Invested" text={amountInvested + " AVAX"} />
-            <Card heading="Total STK Dispersed" text={totalAvax*100 +" STK"} />
+            <Card heading="Total STK Dispersed" text={totalAvax*100 + (6600-Math.trunc(timeBetween/30)) +" STK"} />
 
           </div>
           <br />
