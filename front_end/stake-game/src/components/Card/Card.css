@@ -19,7 +19,7 @@
 .cCard:hover {
   
 
-  border-color: var(--primaryColor2);
+  border-color: var(--primaryColor1);
   /* border-color: linear-gradient(45deg, #7a93f4, #ff3868); */
 }
 

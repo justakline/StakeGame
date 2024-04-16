@@ -57,7 +57,7 @@ const Stake = () => {
   var fiveDayYieldPercent = (((1+ (yieldPercent/100))**5)-1) *100
   fiveDayYieldPercent =Math.round(fiveDayYieldPercent*100)/100
 
-
+  
   
   var tokenBalanceBig = useTokenBalance(tokenAddress, account) 
   var tokenBalance= tokenBalanceBig?BigNumberToString(tokenBalanceBig):"Amount"
@@ -121,7 +121,7 @@ const Stake = () => {
 
   return (
     <div>
-      <Navigation />
+
       <div className="container">
         <div className="wrapper">
           <h1 className="gradientText heading">STAKE</h1>
@@ -149,7 +149,7 @@ const Stake = () => {
           </div>
         </div>
       </div>
-      <Footer />
+ 
     </div>
   );
 };

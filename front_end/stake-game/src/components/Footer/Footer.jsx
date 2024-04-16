@@ -7,7 +7,8 @@ const Footer = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-5">
-            <span className="footerLeft">&copy; Copyright Stake Game 2022</span>
+
+            <span className="footerLeft">     &copy; Copyright Stake Game 2022</span>
           </div>
           <div className="col-md-5">
             <ul className="footerRight">
@@ -26,6 +27,7 @@ const Footer = () => {
                   <Discord />
                 </a>
               </li>
+              <span >Created by Justin Kline</span>
             </ul>
           </div>
         </div>

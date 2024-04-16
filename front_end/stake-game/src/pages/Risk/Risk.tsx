@@ -124,7 +124,6 @@ const Risk = () => {
 
   return (
     <>
-      <Navigation />
       <div className="container">
         <div className="wrapper">
           <h1 className="gradientText heading">RISK</h1>
@@ -176,7 +175,6 @@ const Risk = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

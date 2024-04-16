@@ -18,7 +18,7 @@
 }
 body {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: radial-gradient(black, var(--secondaryColor));
   text-size-adjust: 60%;
   overflow-x: hidden;
@@ -31,7 +31,7 @@ body {
 }
 .App {
   width: 100%;
-  min-height: 100vh;
+  min-height: 95vh;
   background: url("./assets/BG.png") center no-repeat fixed;
   background-size: cover;
   font-family: "Poppins", sans-serif;
@@ -45,7 +45,7 @@ body {
   color: transparent;
 }
 .wrapper {
-  min-height: 100vh;
+
   padding-top: 120px;
   display: flex;
   flex-direction: column;

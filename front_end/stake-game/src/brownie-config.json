@@ -1,1 +1,36 @@
-{"dependencies": ["OpenZeppelin/openzeppelin-contracts@4.6.0", "smartcontractkit/chainlink-brownie-contracts@0.2.1"], "compiler": {"solc": {"remappings": ["@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.6.0", "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1"]}}, "dotenv": ".env", "networks": {"avax-main": {"verify": false, "avax_token": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"}, "avax-test": {"verify": false, "avax_token": "0xd00ae08403B9bbb9124bB305C09058E32C39A48c"}, "development": {"verify": false}, "ganache": {"verify": false}, "rinkeby": {"verify": true}, "kovan": {"verify": true, "weth_token": "0xd0A1E359811322d97991E03f863a0C30C2cF029C", "fau_token": "0xFab46E002BbF0b4509813474841E0716E6730136", "dai_usd_price_feed": "0x777A68032a88E5A84678A77Af2CD65A7b3c0775a", "eth_usd_price_feed": "0x9326BFA02ADD2366b30bacB125260Af641031331"}}, "wallets": {"from_key": "${PRIVATE_KEY}"}}
+{
+  "dependencies": [
+    "OpenZeppelin/openzeppelin-contracts@4.6.0",
+    "smartcontractkit/chainlink-brownie-contracts@0.2.1"
+  ],
+  "compiler": {
+    "solc": {
+      "remappings": [
+        "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.6.0",
+        "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1"
+      ]
+    }
+  },
+  "dotenv": ".env",
+  "networks": {
+    "avax-main": {
+      "verify": false,
+      "avax_token": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
+    },
+    "avax-test": {
+      "verify": false,
+      "avax_token": "0xd00ae08403B9bbb9124bB305C09058E32C39A48c"
+    },
+    "development": { "verify": false },
+    "ganache": { "verify": false },
+    "rinkeby": { "verify": true },
+    "kovan": {
+      "verify": true,
+      "weth_token": "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+      "fau_token": "0xFab46E002BbF0b4509813474841E0716E6730136",
+      "dai_usd_price_feed": "0x777A68032a88E5A84678A77Af2CD65A7b3c0775a",
+      "eth_usd_price_feed": "0x9326BFA02ADD2366b30bacB125260Af641031331"
+    }
+  },
+  "wallets": { "from_key": "${PRIVATE_KEY}" }
+}

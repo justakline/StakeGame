@@ -459,7 +459,6 @@ function handleStake() {
 
   return (
     <>
-      <Navigation />
       <div className="container">
         <div className="wrapper">
           <h1 className="gradientText heading">Speculate</h1>
@@ -525,7 +524,6 @@ function handleStake() {
         </div>
       </div>
       
-      <Footer />
       
     </>
   );

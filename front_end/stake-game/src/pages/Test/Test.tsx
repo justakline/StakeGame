@@ -96,7 +96,6 @@ const Presale = () => {
 
   return (
     <>
-      <Navigation />
       <div className="container">
         <div className="wrapper">
           <h1 className="gradientText heading">Testing</h1>
@@ -132,7 +131,6 @@ const Presale = () => {
           <br />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

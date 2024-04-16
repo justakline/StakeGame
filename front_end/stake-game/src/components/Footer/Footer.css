@@ -2,6 +2,7 @@
   background: #03070e;
   width: 100%;
   padding: 10px 0;
+  margin-bottom: 0%;
 }
 .footerLeft {
   color: var(--fontColor2);
@@ -24,6 +25,12 @@
   font-size: 1.1rem;
   transition: 0.3s;
 }
+.footerRight>  span {
+  color: var(--fontColor2);
+  font-size: 12px;
+  transition: 0.3s;
+}
+
 .footerRight > li > a:hover {
   color: var(--primaryColor);
 }

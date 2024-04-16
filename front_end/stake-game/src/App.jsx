@@ -9,6 +9,8 @@ import Speculate from "./pages/Speculate/Speculate";
 import Presale from "./pages/Presale/Presale";
 import Test from "./pages/Test/Test";
 import Notfound from "./pages/notfound/Notfound";
+import Footer from "./components/Footer/Footer";
+import Navigation from "./components/Nav/Navigation";
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WagmiConfig, createClient, chain, chainId } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -30,6 +32,7 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
+        <Navigation/>
         <Routes>
           <Route path="/" element={<Stake />} />
           <Route path="/risk" element={<Risk />} />
@@ -39,6 +42,7 @@ function App() {
           <Route path="/*" element={<Notfound />} />
         </Routes>
       </div>
+      <Footer/>
     </BrowserRouter>
 
   );
